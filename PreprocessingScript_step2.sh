@@ -5,23 +5,24 @@ model="rat"
 # model="mouse"
 Foldername=(data_"$model"1) #If you have group data, this can be extended to ...
 # Foldername=(data_"$model"1, data_"$model"2, data_"$model"3, data_"$model"4)
-TR="2" # the time sampling rate (TR) in sec of your data
+# TR="2" # the time sampling rate (TR) in sec of your data
 fil_l="0.01"; fil_h="0.25"; # temporal filtering bandwidth in Hz
 # fil_l="0.01"; fil_h="0.3"; # temporal filtering bandwidth in Hz
-sm_sigma="2.1233226" # spatial smoothing sigma
-# Note: FWHM=2.3548*sigma
-# 0.25mm â†’ 10x = 2.5mm â†’ sm_sigma=2.5/2.3548 = 1.0166
-# 0.3mm â†’ 10x=3.0mm â†’ sm_sigma=1.274
-# 0.25mm â†’ 20x = 5mm â†’ sm_sigma=2.1233226
-
+smfwhm="3" # spatial smoothing FWHM
 
 ##########################################################################
 ##########################     Program      ##############################
 ##########################################################################
+sm_sigma=smfwhm/2.3548
+# Note: FWHM=2.3548*sigma
+# 0.25mm â†’ 10x = 2.5mm â†’ sm_sigma=2.5/2.3548 = 1.0166
+# 0.3mm â†’ 10x=3.0mm â†’ sm_sigma=1.274
+# 0.25mm â†’ 20x = 5mm â†’ sm_sigma=2.1233226
 for (( i=0; i<${#Foldername[@]}; i++ ))
 do
 	workingdir="${Foldername[i]}"
-
+	TR=$(3dinfo -tr ./"$workingdir"/EPI_topup.nii.gz);
+	
 	# ##-------------EPI registration estimation-------- 
 	echo "====================$workingdir: EPI registration estimation===================="
 	# fslmaths ./"$workingdir"/EPI_n4_brain.nii.gz -thrp 20 -bin ./"$workingdir"/EPI_n4_mask.nii.gz
