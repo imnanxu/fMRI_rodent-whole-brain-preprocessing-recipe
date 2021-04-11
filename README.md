@@ -115,11 +115,7 @@ The script also generates a global signal regression version which only regresse
 Output: \_mc_topup_norm_fil	
 #### 5. EPI template registration & spatial smoothing & seed extraction
     a. EPI template registration: transform cleaned-up data to template space by the transformation matrix estimated in (2.a)
-    b. Use Gaussian kernel for spatial smoothing. Setup "sigma" value at the begining of the file:
-        FWHM=2.3548*sigma
-        0.25mm â†’ 10x = 2.5mm â†’, sigma=2.5/2.3548 = 1.0166
-        0.3mm â†’ 10x=3.0mm â†’, sigma=1.274
-        0.25mm â†’ 20x = 5mm â†’, sigma=2.1233226        
+    b. Use Gaussian kernel for spatial smoothing. Setup "FWHM" value at the begining of the file:             
     c. Extract the averaged timeseries based on atlas.
 Output: \_mc_topup_norm_fil_reg_sm, \_mc_topup_norm_fil_reg_sm_seed.txt
 
