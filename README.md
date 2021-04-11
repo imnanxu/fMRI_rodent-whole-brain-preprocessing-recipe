@@ -102,7 +102,7 @@ Output: \_n4_brain_reg
     a. Generate a tissue mask
     b. Extract the top 10 PCs from the masked brain tissues.
 #### 3. Nuisance regressions: 26 regressors ([Kai-HsiangChuang, et al., Neuroimage, 2019](https://www.sciencedirect.com/science/article/pii/S105381191832192X))
-    a. 3 for detrends: constant, linear, and quadratic trends
+    a. 3 for detrends: linear and quadratic trends
     b. 10 PCs from non brain tissues
     c. 6 motion regressors (based on motion correction results) 
     d. 6 motion derivative regressors: the temporal derivative of each motion regressor
