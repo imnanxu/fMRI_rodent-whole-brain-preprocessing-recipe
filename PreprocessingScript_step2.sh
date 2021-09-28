@@ -5,7 +5,7 @@ model="rat"
 # model="mouse"
 Foldername=(data_"$model"1) #If you have group data, this can be extended to ...
 # Foldername=(data_"$model"1, data_"$model"2, data_"$model"3, data_"$model"4)
-# TR="2" # the time sampling rate (TR) in sec of your data
+TR="2" # the time sampling rate (TR) in sec of your data
 fil_l="0.01"; fil_h="0.25"; # temporal filtering bandwidth in Hz
 # fil_l="0.01"; fil_h="0.3"; # temporal filtering bandwidth in Hz
 smfwhm="3" # spatial smoothing FWHM
@@ -35,7 +35,7 @@ do
 		antsApplyTransforms -d 3 -i ./lib/tmp/"$model"csfEPI.nii -r ./"$workingdir"/EPI_n4_brain.nii.gz -t [./"$workingdir"/EPI_n4_brain_reg0GenericAffine.mat, 1] -t ./"$workingdir"/EPI_n4_brain_reg1InverseWarp.nii.gz -o ./"$workingdir"/EPI_n4_csf.nii.gz	
 		fslmaths ./"$workingdir"/EPI_n4_csf.nii.gz  -thrp 40 -bin ./"$workingdir"/EPI_n4_csf_mask.nii.gz	
 		antsApplyTransforms -d 3 -i ./lib/tmp/"$model"wmEPI.nii -r ./"$workingdir"/EPI_n4_brain.nii.gz -t [./"$workingdir"/EPI_n4_brain_reg0GenericAffine.mat, 1] -t ./"$workingdir"/EPI_n4_brain_reg1InverseWarp.nii.gz -o ./"$workingdir"/EPI_n4_wm.nii.gz
-		fslmaths ./"$workingdir"/EPI_n4_wm.nii.gz.nii.gz  -thrp 40 -bin ./"$workingdir"/EPI_n4_wm_mask.nii.gz	
+		fslmaths ./"$workingdir"/EPI_n4_wm.nii.gz  -thrp 40 -bin ./"$workingdir"/EPI_n4_wm_mask.nii.gz	
 		fslmaths ./"$workingdir"/EPI_n4_wm_mask.nii.gz -add ./"$workingdir"/EPI_n4_csf_mask.nii.gz ./"$workingdir"/EPI_n4_wmcsf_mask.nii.gz
 		fslmaths ./"$workingdir"/EPI_n4_wmcsf_mask.nii.gz -bin ./"$workingdir"/EPI_n4_wmcsf_mask.nii.gz
 	fi
