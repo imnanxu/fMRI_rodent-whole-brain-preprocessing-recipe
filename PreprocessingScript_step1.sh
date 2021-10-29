@@ -4,7 +4,7 @@
 model="rat"
 # model="mouse"
 Foldername=(data_"$model"1) # Foldername=(data_mouse) #If you have group data, this can be extended to ...
-# Foldername=(data_"$model"1, data_"$model"2, data_"$model"3, data_"$model"4)
+# Foldername=(data_"$model"1 data_"$model"2 data_"$model"3 data_"$model"4)
 bet_f=0.55 # You might need to play with this parameter for creating the tightest brain mask to save you some time of manual editing.
 # NeedSTC=0; 
 NeedSTC=1;
